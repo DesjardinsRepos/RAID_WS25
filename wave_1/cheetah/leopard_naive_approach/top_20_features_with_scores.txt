@@ -1,0 +1,23 @@
+Top Features by Gini Impurity Reduction:
+Index	Feature Type	Score
+-----	------------	-----
+0	function_length	0.051776
+15	V11	0.051978
+5	V1	0.052021
+10	V6	0.052066
+14	V10	0.052095
+12	V8	0.052323
+17	input_validation	0.052391
+1	C1	0.052435
+13	V9	0.052440
+16	integer_overflow	0.052538
+11	V7	0.052594
+2	C2	0.052690
+8	V4	0.052924
+7	V3	0.052924
+4	C4	0.052932
+3	C3	0.052932
+9	V5	0.052937
+18	error_handling	0.053372
+20	buffer_operations	0.053427
+21	memory_alloc	0.053535

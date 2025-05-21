@@ -1,0 +1,18 @@
+Top Features by Gini Impurity Reduction:
+Index	Feature Type
+-----	------------
+0	function_length
+15	V11
+5	V1
+10	V6
+14	V10
+12	V8
+17	input_validation
+1	C1
+13	V9
+16	integer_overflow
+11	V7
+2	C2
+8	V4
+7	V3
+4	C4
