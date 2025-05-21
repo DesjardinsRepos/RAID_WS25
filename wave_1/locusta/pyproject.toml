@@ -1,0 +1,25 @@
+[project]
+name = "svm-poisoning"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Fabian Beez",email = "desjardinslegedz@icloud.com"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "seaborn (>=0.13.2,<0.14.0)",
+    "scikit-learn (>=1.6.1,<2.0.0)",
+    "jupyter-contrib-nbextensions (>=0.7.0,<0.8.0)",
+    "tqdm (>=4.67.1,<5.0.0)",
+    "jupyter (>=1.1.1,<2.0.0)",
+    "ipywidgets (>=8.1.6,<9.0.0)",
+    "torch (>=2.7.0,<3.0.0)",
+    "torchvision (>=0.22.0,<0.23.0)",
+    "higher (>=0.2.1,<0.3.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
