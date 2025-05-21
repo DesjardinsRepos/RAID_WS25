@@ -1,5 +1,4 @@
-This README provides an overview of the approaches team *Sigmoid Sniffers* undertook to tackle the Locusta challenge. It begins by describing our proxy evaluation techniques, then details the various solution approaches we explored and presents the scores achieved by each approch.
-
+This README provides an overview of the approaches team *Sigmoid Sniffers* undertook to tackle the Locusta challenge. It outlines the various solution strategies we explored, describes our proxy evaluation techniques, and presents the scores achieved by each approach.
 ## Overview
 
 The Locusta task involves poisoning a CIFAR-3 model by adding 10% additional training data. The challenge lies in crafting this additional data such that it degrades the performance of an unseen target model.
@@ -12,7 +11,6 @@ A further constraint we faced was limited compute power — Fabian did not have 
 
 The core parts of the gradient-based implementation were copied from [this repository](https://github.com/cheese-hub/SVM-Poisoning) on SVM poisoning for the MNIST dataset. First, we modified it to work with our custom CIFAR-3 data (`CIFAR Poisoning SVC.ipynb`) and later extended the approach to a CNN using back gradient descent (`CIFAR poisoning CNN.ipynb`).
 Finally, more advanced label flipping approaches are detailed in `Optimized Label Flipping.ipynb`.
-
 
 # 1. First Approaches: Gradient-Free Training Data Generation
 
