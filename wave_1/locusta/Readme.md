@@ -69,7 +69,7 @@ We first evaluated how different flipping strategies affected the model's accura
 | Flipping only *most confusing classes*<br>(horse → cat, cat → horse) | 75.72%            | 70.64%             | 68.54%             |
 | Flipping only *cat → horse*                          | 77.06%            | 72.37%             | 69.36%             |
 
-These results suggest that **flipping all classes to all other classes** should theoretically be the most effective strategy even in the RAID framework. However, we were never able to replicate its success there. Our best RAID score of **0.093** was still achieved using the much simpler strategy of flipping only *cat → horse*. 
+These results suggest that **flipping all classes to all other classes** should theoretically be the most effective strategy even in the RAID framework. However, we were never able to replicate its success there. Our best RAID score of **0.093** was achieved by flipping only *cat → horse*, which performs much worse on our local predictor. 
 
 One possibility is that we simply got lucky with that particular submission, given the **high volatility** of RAID scores. This uncertainty made further benchmarking and optimization difficult.
 
