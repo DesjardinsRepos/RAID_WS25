@@ -39,11 +39,11 @@ After achieving reasonably good results with simple, gradient-free methods, we e
 During the Adversarial Machine Learning lecture, we studied the paper *"Poisoning Attacks against Support Vector Machines"* by Biggio et al., which presents a gradient-based data poisoning technique designed to maximally degrade model performance without regard for detectability, fitting well with our objective.
 
 We found an existing [GitHub implementation](https://github.com/cheese-hub/SVM-Poisoning) of this approach. However, it was built specifically for the MNIST dataset. To apply it to our task, we adapted the code to support the CIFAR-3 dataset and used it to generate adversarial horse images, starting from cat images, since this direction had previously proven most effective in our label-flipping experiments.
-Unfortunately, this SVM-based approach did not outperform our simple label-flipping baseline, not even on our locally trained SVM. We suspected the main issue being that SVMs are simply not suited for image classification, where deep learning models tend to dominate.
+Unfortunately, this SVM-based approach did not outperform our simple label-flipping baseline, not even on our locally trained SVM. We suspected the main issue being that SVMs are simply not suited for image classification.
 
 ### Back-Gradient Optimization for CNNs
 
-Based on this hypothesis, we shifted our focus to poisoning attacks tailored to deep networks. We implemented the method from *"Towards Poisoning of Deep Learning Algorithms with Back-gradient Optimization"* by Muñoz-González et al. This approach uses back gradient descent to craft poisoning samples for CNNs, which seemed more aligned with the architecture of the unknown evaluation model.
+Based on this hypothesis, we shifted our focus to poisoning attacks tailored to CNNs. We implemented the method from *"Towards Poisoning of Deep Learning Algorithms with Back-gradient Optimization"* by Muñoz-González et al. This approach uses back gradient descent to craft poisoning samples for CNNs, which seemed more aligned with the architecture of the unknown evaluation model.
 Since there was no public implementation for this technique, we developed it from scratch for CIFAR-3. As in earlier approaches, we focused on flipping class 2 to class 3 (cat → horse), since this transformation had yielded the strongest results in simpler methods.
 
 However, despite the theoretical promise, our implementation again failed to surpass the performance of the basic label-flipping baseline on both the local CNN and for the RAID framework. This left us with several possible explanations:
