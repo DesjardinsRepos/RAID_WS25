@@ -1,0 +1,59 @@
+#!/usr/bin/env python3
+import os
+import sys
+import pexpect
+
+MODELS_DIR = "./models"
+TARGET = "./model.pth"
+best_score = 0.9870
+
+def submit_and_get_score():
+    """
+    Spawn `task submit` under a pty, watch for the Score line,
+    then watch for the confirmation prompt and answer y/n.
+    Returns the float score.
+    """
+    child = pexpect.spawn("task submit", encoding="utf-8", timeout=None)
+    child.logfile = sys.stdout  # echo everything to our stdout
+
+    score = None
+    while True:
+        i = child.expect([
+            r"\[\+\] Score: ([0-9\.]+)",
+            r"Are you sure you want to submit\? \[y/n\]",
+            pexpect.EOF,
+        ])
+        if i == 0:
+            score = float(child.match.group(1))
+        elif i == 1:
+            if score is None:
+                raise RuntimeError("Didn't parse Score before confirmation prompt!")
+            answer = "y" if score > best_score else "n"
+            child.sendline(answer)
+        else:
+            break
+
+    child.close()
+    return score
+
+if __name__ == "__main__":
+    for fn in sorted(os.listdir(MODELS_DIR)):
+        if not fn.endswith(".pth"):
+            continue
+
+        src = os.path.join(MODELS_DIR, fn)
+        print(f"\n=== Testing {fn} ===")
+        os.replace(src, TARGET)
+
+        try:
+            sc = submit_and_get_score()
+        except Exception as e:
+            print("Error during submission:", e, file=sys.stderr)
+            continue
+
+        print(f"{fn} scored {sc:.4f} (current best: {best_score:.4f})")
+        if sc > best_score:
+            best_score = sc
+            print("New best score.")
+
+    print(f"\nDone. Highest score: {best_score:.4f}")

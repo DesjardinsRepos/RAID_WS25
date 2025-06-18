@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+SRC_DIR="./models/"
+SLEEP_INTERVAL=10
+
+while true; do
+  # Check if there are any files (not just directories) in ./models/
+  if find "$SRC_DIR" -type f | grep -q .; then
+    echo "[$(date +%F %T)] Found files in ${SRC_DIR}, running ./autosubmit..."
+    ./autosubmit
+  fi
+
+  sleep "$SLEEP_INTERVAL"
+done

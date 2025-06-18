@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+SRC_DIR="./models/"
+DEST="snicket@raid:/home/user/models"
+SLEEP_INTERVAL=10
+
+while true; do
+  # Check if there are any files (not just subdirs) in SRC_DIR
+  if find "$SRC_DIR" -type f | grep -q .; then
+    echo "[$(date '+%F %T')] Found files in ${SRC_DIR}, syncing..."
+
+    # Sync files and remove them after successful transfer
+    rsync -avz --remove-source-files "$SRC_DIR" "$DEST"
+    RSYNC_EXIT=$?
+
+    if [ $RSYNC_EXIT -eq 0 ]; then
+      echo "[$(date '+%F %T')] rsync succeeded, cleaning up empty subdirs..."
+
+      # Remove only empty subdirectories (but NOT the main models/ folder)
+      find "$SRC_DIR" -mindepth 1 -type d -empty -delete
+    else
+      echo "[$(date '+%F %T')] rsync failed (exit code $RSYNC_EXIT), will retry."
+    fi
+  fi
+
+  sleep "$SLEEP_INTERVAL"
+done
