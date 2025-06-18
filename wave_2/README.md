@@ -88,7 +88,7 @@ The local score is the score of evaluating the code with one video.
 Then then added an adaptive virtual background mask and achieved a local score of 0.4722 and a server score of 0.062.
 Lastly, we changed our background reconstruction to prioritise pixels that are different to the virtual background, as we noticed that a lot of leaks have overlapping real background and virtual background and we added an inpaint function that would guess the value of black pixels. This approach lead to a local score of 0.564.
 
-Sadly, we were not able to submit the last modification of solution D to the server. Hour algorithms took 7-8h to complete the tests even before the changes, and after the code got stuck or failed 3 times, we did not have time to submit it again. 
+Sadly, we were not able to submit the last modification of solution D to the server. Our algorithms took 7-8h to complete the tests even before the changes, and after the code got stuck or failed 3 times, we did not have time to submit it again. 
 
 
 ---
